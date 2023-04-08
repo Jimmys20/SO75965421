@@ -15,7 +15,22 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        ViewData["Roles"] = new List<Role>
+        {
+            new Role { RoleTitle = "Role1" },
+            new Role { RoleTitle = "Role2" },
+            new Role { RoleTitle = "Admin" },
+            new Role { RoleTitle = "User" }
+        };
+
+        return View(new IndexViewModel
+        {
+            userRole = new List<string>
+            {
+                "Role2",
+                "Admin"
+            }
+        });
     }
 
     public IActionResult Privacy()

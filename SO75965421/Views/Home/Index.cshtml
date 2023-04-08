@@ -1,9 +1,14 @@
-﻿@{
+﻿@model IndexViewModel
+@{
     ViewData["Title"] = "Home Page";
+    List<Role>? Roles = ViewData["Roles"] as List<Role>;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
+@foreach (var item in Roles!)
+{
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" class="checkoption" name="SelectedRoles" value="@item.RoleTitle" checked="@(Model.userRole.Any(r => r.Equals(item.RoleTitle)))" /> @item.RoleTitle
+        </label>
+    </div>
+}
